@@ -1,15 +1,15 @@
 import React from 'react'
 
 type Props = {
-  children: React.ReactNode
   title?: string
   width?: string
   icon?: React.ReactNode
   isIcon?: boolean
   iconCustom?: string
+  value: number
 }
 
-export default function Card({ children, title, width, isIcon, icon, iconCustom }: Props) {
+export default function Card({ value, title, width, isIcon, icon, iconCustom }: Props) {
   return (
     <div
       className={`h-[216px] rounded-lg overflow-hidden bg-white border border-gray-100 p-6 relative ${width}`}
@@ -24,7 +24,7 @@ export default function Card({ children, title, width, isIcon, icon, iconCustom 
         ) : null}
         <div>
           <p className='text-[#C3C3C6] mb-4'>{title}</p>
-          {children}
+          <p className='text-3xl font-semibold text-gray-800'>{value}</p>
         </div>
       </div>
       <div className='w-full h-[10px] absolute bottom-0 left-0 bg-gradient-to-r from-[#7987FF] to-[#FF9587]'></div>

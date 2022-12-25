@@ -134,6 +134,7 @@ const form = (
             <button
               className='px-8 py-2 rounded bg-gray-100 text-gray-600'
               onClick={() => handleSteps('NEXT')}
+              disabled={!isNameValid || !isNumberValid && true}
             >
               next
             </button>

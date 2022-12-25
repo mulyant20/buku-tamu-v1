@@ -9,7 +9,23 @@ const dataContext = createContext<IdataContext | null>(null)
 
 const DataContextProvider = ({ children }: Props) => {
   const [guests, setGuests] = useState<guestI[] | []>([])
-  const [employees, setEmployees] = useState<employeeI[] | []>([])
+  const [employees, setEmployees] = useState<employeeI[]>([
+    {
+      id: '1',
+      name: 'Muhamad Mulyana',
+      position: 'CEO'
+    },
+    {
+      id: '2',
+      name: 'Herdian',
+      position: 'CTO'
+    },
+    {
+      id: '3',
+      name: 'Aji Priyastomo',
+      position: 'COO'
+    }
+  ])
 
   const addGuest = (payload: any) => {
     const newGuest = {...payload}

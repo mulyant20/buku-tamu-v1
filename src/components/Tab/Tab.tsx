@@ -22,7 +22,7 @@ export default function Tab({}: Props) {
       <div className='max-w-[966px] h-full mx-auto relative'>
         <div className='h-fit absolute bottom-0 flex gap-[40px]'>
           {Tabs.map((tab) => (
-            <div key={tab.id} className='relative h-16 px-8 flex items-center relative'>
+            <div key={tab.id} className={`relative h-16 px-8 flex items-center relative ${tab.hasOwnProperty('isActive') ? 'text-gray-600' : 'text-gray-400'}`}>
               <NavLink to={tab.route}>{tab.name}</NavLink>
               {tab.hasOwnProperty('isActive') ? <div className='rounded-t-lg w-full h-[5px] bg-gradient-to-r from-[#7987FF] to-[#FF9587] absolute bottom-0 left-1/2 -translate-x-1/2'></div> : null}
             </div>
