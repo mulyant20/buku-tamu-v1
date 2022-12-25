@@ -5,6 +5,10 @@ export const initState: stateType = {
   employee: '',
   date: '',
   time: '',
+  isName: '',
+  isNumberValid: '',
+  isDate: '',
+  isTime: ''
 }
 
 export const formReducer = (state: stateType, action: Action) => {
@@ -19,6 +23,10 @@ export const formReducer = (state: stateType, action: Action) => {
         employee: '',
         date: '',
         time: '',
+        isName: '',
+        isNumberValid: '',
+        isDate: '',
+        isTime: ''
       }
     default:
       return state
@@ -26,12 +34,16 @@ export const formReducer = (state: stateType, action: Action) => {
 }
 
 export type stateType = {
-  name: string
-  phoneNumber: string
-  desc: string
-  employee: string
-  date: string
-  time: string
+  name:           string
+  phoneNumber:    string
+  desc:           string
+  employee:       string
+  date:           string
+  time:           string
+  isName:         string
+  isNumberValid:  string
+  isDate:         string
+  isTime:         string
 }
 
 export enum ActionType {
