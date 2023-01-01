@@ -6,7 +6,7 @@ type Props = {
   icon?: React.ReactNode
   isIcon?: boolean
   iconCustom?: string
-  value: number
+  value: number,
 }
 
 export default function Card({ value, title, width, isIcon, icon, iconCustom }: Props) {

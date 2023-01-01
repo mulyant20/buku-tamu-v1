@@ -13,17 +13,17 @@ const DataContextProvider = ({ children }: Props) => {
     {
       id: '1',
       name: 'Muhamad Mulyana',
-      position: 'CEO'
+      position: 'Software Engineer'
     },
     {
       id: '2',
       name: 'Herdian',
-      position: 'CTO'
+      position: 'Developer'
     },
     {
       id: '3',
       name: 'Aji Priyastomo',
-      position: 'COO'
+      position: 'Network security'
     }
   ])
 

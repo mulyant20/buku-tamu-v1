@@ -2,13 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Employee, Guest, GuestMode, Home, List } from './pages'
+import { Employee, GuestMode, Home, List } from './pages'
 import DataContextProvider from './context/dataContext'
 import { Setting } from './pages/Setting'
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
-  { path: '/guest', element: <Guest /> },
   { path: '/list', element: <List /> },
   { path: '/setting', element: <Setting /> },
   { path: '/employee', element: <Employee /> },

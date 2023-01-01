@@ -1,7 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit'
 import React, { useReducer, Reducer, useMemo } from 'react'
 import { UseDataContext } from '../../context/dataContext'
-import { IdataContext } from '../../interfaces/data'
+import { employeeI, IdataContext } from '../../interfaces/data'
 import {
   Action,
   ActionType,
@@ -17,8 +17,12 @@ type Props = {
 }
 
 export default function MultiForm({ step, handleStep, reset }: Props) {
-  const [state, dispatch] = useReducer<Reducer<stateType, Action>>(formReducer, initState)
-  const { addGuest } = UseDataContext() as IdataContext
+  const [state, dispatch] = useReducer<Reducer<stateType, Action>>(
+    formReducer,
+    initState
+  )
+
+  const { addGuest, employees } = UseDataContext() as IdataContext
   const handleChangeDispatch = (payload: any) => {
     dispatch({ type: ActionType.handleChange, payload })
   }
@@ -29,11 +33,17 @@ export default function MultiForm({ step, handleStep, reset }: Props) {
       if (nameRegex.test(state.name)) {
         return true
       } else {
-        handleChangeDispatch({ name: 'isNameValid', value:'*Nama hanya boleh huruf'})
+        handleChangeDispatch({
+          name: 'isNameValid',
+          value: '*Nama hanya boleh huruf',
+        })
         return false
       }
     } else {
-      handleChangeDispatch({ name: 'isNameValid', value:'*Nama tidak boleh kosong'})
+      handleChangeDispatch({
+        name: 'isNameValid',
+        value: '*Nama tidak boleh kosong',
+      })
       return false
     }
   }, [state.name])
@@ -44,11 +54,17 @@ export default function MultiForm({ step, handleStep, reset }: Props) {
       if (numberRegex.test(state.phoneNumber)) {
         return true
       } else {
-        handleChangeDispatch({ name: 'isNumberValid', value:'*Nomor telepon hanya boleh 10 sampai 12 digit'})
+        handleChangeDispatch({
+          name: 'isNumberValid',
+          value: '*Nomor telepon hanya boleh 10 sampai 12 digit',
+        })
         return false
       }
     } else {
-      handleChangeDispatch({ name: 'isNumberValid',  value:'*Nomor telepon Harus diawali 0'})
+      handleChangeDispatch({
+        name: 'isNumberValid',
+        value: '*Nomor telepon Harus diawali 0',
+      })
       return false
     }
   }, [state.phoneNumber])
@@ -81,7 +97,8 @@ export default function MultiForm({ step, handleStep, reset }: Props) {
         handleStep,
         save,
         isNameValid,
-        isNumberValid
+        isNumberValid,
+        employees
       )}
     </div>
   )
@@ -94,7 +111,8 @@ const form = (
   handleSteps: any,
   save: any,
   isNameValid: boolean,
-  isNumberValid: boolean
+  isNumberValid: boolean,
+  employees: employeeI[]
 ) => {
   switch (step) {
     case 1:
@@ -134,7 +152,7 @@ const form = (
             <button
               className='px-8 py-2 rounded bg-gray-100 text-gray-600'
               onClick={() => handleSteps('NEXT')}
-              disabled={!isNameValid || !isNumberValid && true}
+              disabled={!isNameValid || (!isNumberValid && true)}
             >
               next
             </button>
@@ -145,13 +163,15 @@ const form = (
       return (
         <>
           <p className='text-gray-500 font-semibold mb-4'>Nama Pegawai</p>
-          <input
-            type='text'
+          <select
             name='employee'
             className='w-full px-4 py-3 rounded border border-gray-200 text-gray-600'
             value={state.employee}
             onChange={handleChange}
-          />
+          >
+            <option defaultChecked>--select employe--</option>
+            {employees.map(employee => <option key={employee.id} value={employee.name}>{employee.name} - {employee.position}</option>)}
+          </select>
           <div className='mt-4 flex justify-between gap-4'>
             <div className='flex-1'>
               <p className='text-gray-500 font-semibold mb-4 mt-8'>Tanggal</p>
